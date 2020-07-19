@@ -35,6 +35,8 @@
 #		  available on the target.
 #	SPECS - Specs file to give to the linker (nosys.specs, nano.specs)
 #------------------------------------------------------------------------------
+.DEFAULT_GOAL := all
+
 include sources.mk
 # Platform Overrides
 PLATFORM ?= HOST
