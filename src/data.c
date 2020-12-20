@@ -5,11 +5,11 @@
  * forms is permitted as long as the files maintain this copyright. Users are
  * permitted to modify this and use it to learn about the field of embedded
  * software. Alex Fosdick and the University of Colorado are not liable for any
- * misuse of this material. 
+ * misuse of this material.
  *
  *****************************************************************************/
 /**
- * @file course1.c 
+ * @file course1.c
  * @brief This file is to be used to course 1 final assessment.
  *
  * @author Valentina Krasnobaeva
@@ -29,8 +29,9 @@
 #define BASE_10 (10)
 #define BASE_16 (16)
 
-// we need to hold int32, so 32 positions + one char for adding '/0' at
-// the end
+/* we need to hold int32, so 32 positions + one char for adding '/0' at
+ * the end
+ */
 #define MAX_LEN ((32+1) * sizeof(uint8_t))
 
 static void print_str(uint8_t * str, uint8_t len) {
@@ -55,7 +56,7 @@ static uint8_t * int_to_str(int32_t data, uint8_t * start, uint32_t base) {
 		i = data % base;
 		data /= base;
 		if (i < 10) {
-			*str = '0'+i;
+			*str = '0'+ i;
 			str++;
 		} else {
 			*str = 'a' - 10 + i;
@@ -72,7 +73,7 @@ uint8_t my_itoa(int32_t data, uint8_t * ptr, uint32_t base) {
 	uint8_t len;
 	uint8_t * str;
 
-	// check base
+	/* check base */
 	if ((base < BASE_2 || base > BASE_16) || (base == BASE_8)) {
 		PRINTF("ERROR: Invalid base! Supported bases are: %d, %d, %d\n",
 			BASE_2, BASE_10, BASE_16);
@@ -83,7 +84,12 @@ uint8_t my_itoa(int32_t data, uint8_t * ptr, uint32_t base) {
 	if (negative) {
 		data *= -1;
 		if (base != BASE_10) {
-			// need to perform a two's compliment
+			/* need to perform a two's complement to store it as
+			 * a negative:
+			 * 'UINT_MAX - data' - for flipping bits (this will be
+			 * one's complement), then '+ 1' as we need two's
+			 * complement
+			 */
 			data = UINT_MAX - data + 1;
 		}
 	}
@@ -120,16 +126,16 @@ int32_t my_atoi(uint8_t * str, uint8_t digits, uint32_t base) {
 	int32_t num = 0;
 	size_t len;
 	uint8_t data;
-	uint8_t i=0;
+	uint8_t i = 0;
 	uint8_t negative = 0;
 
-	// check base
+	/* check base */
 	if ((base < BASE_2 || base > BASE_16) || (base == BASE_8)) {
 		PRINTF("ERROR: Invalid base! Supported bases are: %d, %d, %d\n",
 			BASE_2, BASE_10, BASE_16);
 		return EINVAL;
 	}
-	digits--; // skip str termination '\0'
+	digits--; /* skip str termination '\0' */
 	len = digits;
 
 #ifdef VERBOSE
@@ -137,21 +143,21 @@ int32_t my_atoi(uint8_t * str, uint8_t digits, uint32_t base) {
 #endif
 	print_str(str, digits);
 
-	if (*str == '-' ){
-		negative=1;
+	if (*str == '-' ) {
+		negative = 1;
 		len--;
 		str++;
 	}
 
-	if (base == BASE_10 || base== BASE_2)
+	if (base == BASE_10 || base == BASE_2)
 		my_reverse(str, len);
 
 	while (digits--) {
-		if(*(str+digits)>='0' && *(str+digits)<='9') {
-			data = *(str+digits) - '0';
-		} else if((*(str+digits)>='A' && *(str+digits)<='F') || \
-			(*(str+digits)>='a' && *(str+digits)<='f')) {
-			switch(*(str+digits)) {
+		if(*(str + digits) >= '0' && *(str + digits) <= '9') {
+			data = *(str + digits) - '0';
+		} else if((*(str + digits) >= 'A' && *(str + digits) <= 'F') || \
+			(*(str + digits) >= 'a' && *(str + digits) <= 'f')) {
+			switch(*(str + digits)) {
 				case 'A': case 'a': data=10; break;
 				case 'B': case 'b': data=11; break;
 				case 'C': case 'c': data=12; break;
@@ -160,12 +166,13 @@ int32_t my_atoi(uint8_t * str, uint8_t digits, uint32_t base) {
 				case 'F': case 'f': data=15; break;
 			}
 		}
-		if (base == BASE_10 || base== BASE_2) {
+		if (base == BASE_10 || base == BASE_2) {
 			num = base * num + data;
 		} else {
-			// 1<<(4*i) - avoid to use pow(16,i) which leads to FPU
-			// computation and linking with libm
-			num += data * (1<<(4*i));
+			/* 1 << (4 * i) - avoid to use pow(16,i) which leads
+			 * to computations in FPU and linking with libm
+			 */
+			num += data * (1 << (4 * i));
 			i++;
 		}
 	}
