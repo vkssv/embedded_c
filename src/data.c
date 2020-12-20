@@ -29,10 +29,9 @@
 #define BASE_10 (10)
 #define BASE_16 (16)
 
-/* we need to hold int32, so 32 positions + one char for adding '/0' at
+/* we need to hold int32, so 0-31 positions + one char for adding '/0' at
  * the end
  */
-#define MAX_LEN ((32+1) * sizeof(uint8_t))
 
 static void print_str(uint8_t * str, uint8_t len) {
 

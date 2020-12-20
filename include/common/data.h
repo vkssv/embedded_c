@@ -34,9 +34,10 @@
 #define BASE_10 (10)
 #define BASE_16 (16)
 
-// we need to hold int32, so 32 positions + one char for adding '/0' at
-// the end
-#define MAX_LEN ((32+1) * sizeof(uint8_t))
+/* we need to hold int32, so 0-31 (32) positions + one char for adding '/0'
+ * at the end.
+*/
+#define MAX_LEN ((32 + 1) * sizeof(uint8_t))
 
 /**
  * @brief Convert data from a 32-bit signed int into an ASCII string
