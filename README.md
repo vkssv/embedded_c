@@ -169,3 +169,24 @@ int32_t my_atoi(uint8_t * ptr, uint8_t digits, uint32_t base)
 	* this function needs to handle signed data;
 
 	* you may not use any string functions or libraries.
+
+
+How To Compile:
+
+1. Add a PATH to bin folder inside the GNU Arm Embedded Toolchain
+(9-2019-q4-major release is used for this study):
+
+	export PATH="...:/home/mercury/embedded/gcc-arm-none-eabi-9-2019-q4-major/bin"
+
+2. In the top of course1 folder run:
+
+	make all COURSE1=COURSE1 PLATFORM=HOST for x86
+
+or
+	make all COURSE1=COURSE1 PLATFORM=MSP432 for TI MSP432P401R
+
+with more verbosity:
+
+	make all COURSE1=COURSE1 PLATFORM=MSP432 VERBOSE=VERBOSE
+
+	
