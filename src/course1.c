@@ -2,14 +2,14 @@
  * Copyright (C) 2017 by Alex Fosdick - University of Colorado
  *
  * Redistribution, modification or use of this software in source or binary
- * forms is permitted as long as the files maintain this copyright. Users are 
+ * forms is permitted as long as the files maintain this copyright. Users are
  * permitted to modify this and use it to learn about the field of embedded
  * software. Alex Fosdick and the University of Colorado are not liable for any
- * misuse of this material. 
+ * misuse of this material.
  *
  *****************************************************************************/
 /**
- * @file course1.c 
+ * @file course1.c
  * @brief This file is to be used to course 1 final assessment.
  *
  * @author Alex Fosdick
@@ -26,17 +26,18 @@
 
 
 int8_t test_data1() {
+
 	int32_t num = -4096;
 	uint32_t digits;
 	int32_t value;
-	uint8_t * ptr;
+	uint8_t *ptr;
 
 	PRINTF("\ntest_data1();\n");
- 	ptr = (uint8_t*) reserve_words( DATA_SET_SIZE_W );
+	ptr = (uint8_t*) reserve_words( DATA_SET_SIZE_W );
 
- 	if (! ptr ) {
- 		return TEST_ERROR;
- 	}
+	if (!ptr) {
+		return TEST_ERROR;
+	}
 
 	digits = my_itoa( num, ptr, BASE_16);
 	value = my_atoi( ptr, digits, BASE_16);
@@ -54,10 +55,11 @@ int8_t test_data1() {
 }
 
 int8_t test_data2() {
+
 	int32_t num = 123456;
 	uint32_t digits;
 	int32_t value;
-	uint8_t * ptr;
+	uint8_t *ptr;
 
 	PRINTF("test_data2():\n");
 	ptr = (uint8_t*) reserve_words( DATA_SET_SIZE_W );
@@ -82,11 +84,12 @@ int8_t test_data2() {
 }
 
 int8_t test_memmove1() {
+
 	uint8_t i;
 	int8_t ret = TEST_NO_ERROR;
-	uint8_t * set;
-	uint8_t * ptra;
-	uint8_t * ptrb;
+	uint8_t *set;
+	uint8_t *ptra;
+	uint8_t *ptrb;
 
 	PRINTF("test_memmove1() - NO OVERLAP\n");
 	set = (uint8_t*) reserve_words( MEM_SET_SIZE_W ); // 8
@@ -118,11 +121,12 @@ int8_t test_memmove1() {
 }
 
 int8_t test_memmove2() {
+
 	uint8_t i;
 	int8_t ret = TEST_NO_ERROR;
-	uint8_t * set;
-	uint8_t * ptra;
-	uint8_t * ptrb;
+	uint8_t *set;
+	uint8_t *ptra;
+	uint8_t *ptrb;
 
 	PRINTF("test_memmove2() -OVERLAP END OF SRC BEGINNING OF DST\n");
 	set = (uint8_t*) reserve_words(MEM_SET_SIZE_W);
@@ -154,11 +158,12 @@ int8_t test_memmove2() {
 }
 
 int8_t test_memmove3() {
+
 	uint8_t i;
 	int8_t ret = TEST_NO_ERROR;
-	uint8_t * set;
-	uint8_t * ptra;
-	uint8_t * ptrb;
+	uint8_t *set;
+	uint8_t *ptra;
+	uint8_t *ptrb;
 
 	PRINTF("test_memove3() - OVERLAP END OF DEST BEGINNING OF SRC\n");
 	set = (uint8_t*)reserve_words( MEM_SET_SIZE_W);
@@ -190,11 +195,12 @@ int8_t test_memmove3() {
 }
 
 int8_t test_memcopy() {
+
 	uint8_t i;
 	int8_t ret = TEST_NO_ERROR;
-	uint8_t * set;
-	uint8_t * ptra;
-	uint8_t * ptrb;
+	uint8_t *set;
+	uint8_t *ptra;
+	uint8_t *ptrb;
 
 	PRINTF("test_memcopy()\n");
 	set = (uint8_t*) reserve_words(MEM_SET_SIZE_W);
@@ -225,13 +231,13 @@ int8_t test_memcopy() {
 	return ret;
 }
 
-int8_t test_memset() 
+int8_t test_memset()
 {
 	uint8_t i;
 	uint8_t ret = TEST_NO_ERROR;
-	uint8_t * set;
-	uint8_t * ptra;
-	uint8_t * ptrb;
+	uint8_t *set;
+	uint8_t *ptra;
+	uint8_t *ptrb;
 
 	PRINTF("test_memset()\n");
 	set = (uint8_t*)reserve_words(MEM_SET_SIZE_W);
@@ -271,7 +277,7 @@ int8_t test_reverse()
 {
 	uint8_t i;
 	int8_t ret = TEST_NO_ERROR;
-	uint8_t * copy;
+	uint8_t *copy;
 	uint8_t set[MEM_SET_SIZE_B] = {0x3F, 0x73, 0x72, 0x33, 0x54, 0x43,
 								   0x72, 0x26, 0x48, 0x63, 0x20, 0x66,
 								   0x6F, 0x00, 0x20, 0x33, 0x72, 0x75,
@@ -298,10 +304,11 @@ int8_t test_reverse()
 	}
 
 	free_words((int32_t*)copy);
+
 	return ret;
 }
 
-uint8_t course1(void) 
+uint8_t course1(void)
 {
 	uint8_t i;
 	int8_t failed = 0;
@@ -315,7 +322,7 @@ uint8_t course1(void)
 	results[5] = test_memcopy();
 	results[6] = test_memset();
 	results[7] = test_reverse();
-	
+
 	for ( i = 0; i < TESTCOUNT; i++) {
 		failed += results[i];
 	}

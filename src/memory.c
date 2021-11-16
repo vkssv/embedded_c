@@ -29,19 +29,22 @@
 /***********************************************************
  Function Definitions
 ***********************************************************/
-void set_value(uint8_t * ptr, uint8_t index, uint8_t value){
+void set_value(uint8_t *ptr, uint8_t index, uint8_t value) {
+
 	ptr[index] = value;
 }
 
-void clear_value(uint8_t * ptr, uint8_t index){
+void clear_value(uint8_t *ptr, uint8_t index) {
+
 	set_value(ptr, index, 0);
 }
 
-uint8_t get_value(uint8_t * ptr, uint8_t index){
+uint8_t get_value(uint8_t *ptr, uint8_t index) {
+
 	return ptr[index];
 }
 
-void set_all(uint8_t * ptr, uint8_t value, uint8_t size){
+void set_all(uint8_t *ptr, uint8_t value, uint8_t size) {
 	uint8_t i;
 
 	for(i = 0; i < size; i++) {
@@ -49,15 +52,18 @@ void set_all(uint8_t * ptr, uint8_t value, uint8_t size){
 	}
 }
 
-void clear_all(uint8_t * ptr, uint8_t size){
+void clear_all(uint8_t *ptr, uint8_t size) {
+
 	set_all(ptr, 0, size);
 }
 
-uint8_t * my_memmove(uint8_t * src, uint8_t * dst, size_t length){
+uint8_t *my_memmove(uint8_t *src, uint8_t *dst, size_t length) {
+
 	if(src == dst) {
 		PRINTF("WARN: src and dst are the same !\n");
 
 		return dst;
+
 	} else if(src < dst && dst < src + length) { 
 		/* if overlap then copy from end*/
 		src += length;
@@ -76,12 +82,11 @@ uint8_t * my_memmove(uint8_t * src, uint8_t * dst, size_t length){
 	}
 
 	return dst;
-	
 }
 
-uint8_t * my_memcopy(uint8_t * src, uint8_t * dst, size_t length) {
-	const uint8_t * source = (const uint8_t * )src;
-	uint8_t * p = dst;
+uint8_t *my_memcopy(uint8_t *src, uint8_t *dst, size_t length) {
+	const uint8_t *source = (const uint8_t *)src;
+	uint8_t *p = dst;
 
 	while(length--) {
 		*p = *source;
@@ -92,8 +97,8 @@ uint8_t * my_memcopy(uint8_t * src, uint8_t * dst, size_t length) {
 	return dst;
 }
 
-uint8_t * my_memset(uint8_t * src, size_t length, uint8_t value) {
-	while(length--){
+uint8_t * my_memset(uint8_t *src, size_t length, uint8_t value) {
+	while(length--) {
 		*src = value;
 		src++;
 	}
@@ -101,15 +106,15 @@ uint8_t * my_memset(uint8_t * src, size_t length, uint8_t value) {
 	return src;
 }
 
-uint8_t * my_memzero(uint8_t * src, size_t length) {
+uint8_t *my_memzero(uint8_t *src, size_t length) {
 
 	return my_memset(src, length, 0);
 }
 
-uint8_t * my_reverse(uint8_t * src, size_t length) {
+uint8_t *my_reverse(uint8_t *src, size_t length) {
 	size_t lim = length/2;
 	uint8_t tmp;
-	uint8_t * source = src;
+	uint8_t *source = src;
 
 	for (uint8_t i=0; i < lim; i++) {
 		length--;
@@ -122,8 +127,8 @@ uint8_t * my_reverse(uint8_t * src, size_t length) {
 	return src;
 }
 
-int32_t * reserve_words(size_t length) {
-	int32_t * src = calloc(length, sizeof(int32_t));
+int32_t *reserve_words(size_t length) {
+	int32_t *src = calloc(length, sizeof(int32_t));
 
 	if (src == NULL) {
 		PRINTF("FATAL: Memory not allocated.\n");
@@ -133,6 +138,7 @@ int32_t * reserve_words(size_t length) {
 	return src;
 }
 
-void free_words(int32_t * src) {
+inline void free_words(int32_t *src) {
+
 	free(src);
 }

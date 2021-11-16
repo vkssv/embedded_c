@@ -38,7 +38,7 @@
  *
  * @return void.
  */
-void set_value(uint8_t * ptr, uint8_t index, uint8_t value);
+void set_value(uint8_t *ptr, uint8_t index, uint8_t value);
 
 /**
  * @brief Clear a value of a data array 
@@ -51,7 +51,7 @@ void set_value(uint8_t * ptr, uint8_t index, uint8_t value);
  *
  * @return void.
  */
-void clear_value(uint8_t * ptr, uint8_t index);
+void clear_value(uint8_t *ptr, uint8_t index);
 
 /**
  * @brief Returns a value of a data array 
@@ -64,7 +64,7 @@ void clear_value(uint8_t * ptr, uint8_t index);
  *
  * @return Value to be read.
  */
-uint8_t get_value(uint8_t * ptr, uint8_t index);
+uint8_t get_value(uint8_t *ptr, uint8_t index);
 
 /**
  * @brief Sets data array elements to a value
@@ -79,7 +79,7 @@ uint8_t get_value(uint8_t * ptr, uint8_t index);
  *
  * @return void.
  */
-void set_all(uint8_t * ptr, uint8_t value, uint8_t size);
+void set_all(uint8_t *ptr, uint8_t value, uint8_t size);
 
 /**
  * @brief Clears elements in a data array
@@ -92,7 +92,7 @@ void set_all(uint8_t * ptr, uint8_t value, uint8_t size);
  *
  * @return void.
  */
-void clear_all(uint8_t * ptr, uint8_t size);
+void clear_all(uint8_t *ptr, uint8_t size);
 
 /**
  * @brief Moves a given number of bytes from source memory location to
@@ -109,7 +109,7 @@ void clear_all(uint8_t * ptr, uint8_t size);
  *
  * @return Pointer to a destination memory location.
  */
-uint8_t * my_memmove(uint8_t * src, uint8_t * dst, size_t length);
+uint8_t *my_memmove(uint8_t *src, uint8_t *dst, size_t length);
 
 /**
  * @brief Copies a given number of bytes from source memory location to
@@ -126,7 +126,7 @@ uint8_t * my_memmove(uint8_t * src, uint8_t * dst, size_t length);
  *
  * @return Pointer to a destination memory location.
  */
-uint8_t * my_memcopy(uint8_t * src, uint8_t * dst, size_t length);
+uint8_t *my_memcopy(uint8_t *src, uint8_t *dst, size_t length);
 
 /**
  * @brief Set to a given value a length of bytes starting from a source
@@ -141,7 +141,7 @@ uint8_t * my_memcopy(uint8_t * src, uint8_t * dst, size_t length);
  *
  * @return Pointer to a source memory location.
  */
-uint8_t * my_memset(uint8_t * src, size_t length, uint8_t value);
+uint8_t *my_memset(uint8_t *src, size_t length, uint8_t value);
 
 /**
  * @brief Zero out a length of bytes starting from a source memory
@@ -155,7 +155,7 @@ uint8_t * my_memset(uint8_t * src, size_t length, uint8_t value);
  *
  * @return Pointer to a source memory location.
  */
-uint8_t * my_memzero(uint8_t * src, size_t length);
+uint8_t *my_memzero(uint8_t *src, size_t length);
 
 /**
  * @brief Reverse the order of all of the bytes from source to length
@@ -168,7 +168,7 @@ uint8_t * my_memzero(uint8_t * src, size_t length);
  *
  * @return Pointer to a source memory location.
  */
-uint8_t * my_reverse(uint8_t * src, size_t length);
+uint8_t *my_reverse(uint8_t *src, size_t length);
 
 /**
  * @brief Allocate in dynamic memory a given length of bytes
@@ -180,7 +180,7 @@ uint8_t * my_reverse(uint8_t * src, size_t length);
  * @return Pointer to allocated dynamic memory if successful, or NULL
  * if failed.
  */
-int32_t * reserve_words(size_t length);
+int32_t *reserve_words(size_t length);
 
 /**
  * @brief Free a dynamic memory allocation 
@@ -192,6 +192,6 @@ int32_t * reserve_words(size_t length);
  * 
  * @return void.
  */
-void free_words(int32_t * src);
+extern void free_words(int32_t *src);
 
 #endif /* __MEMORY_H__ */

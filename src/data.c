@@ -76,6 +76,7 @@ uint8_t my_itoa(int32_t data, uint8_t * ptr, uint32_t base) {
 	if ((base < BASE_2 || base > BASE_16) || (base == BASE_8)) {
 		PRINTF("ERROR: Invalid base! Supported bases are: %d, %d, %d\n",
 			BASE_2, BASE_10, BASE_16);
+
 		return EINVAL;
 	}
 
@@ -132,6 +133,7 @@ int32_t my_atoi(uint8_t * str, uint8_t digits, uint32_t base) {
 	if ((base < BASE_2 || base > BASE_16) || (base == BASE_8)) {
 		PRINTF("ERROR: Invalid base! Supported bases are: %d, %d, %d\n",
 			BASE_2, BASE_10, BASE_16);
+
 		return EINVAL;
 	}
 	digits--; /* skip str termination '\0' */
