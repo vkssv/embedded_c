@@ -173,6 +173,11 @@ int32_t my_atoi(uint8_t * str, uint8_t digits, uint32_t base) {
 			/* 1 << (4 * i) - avoid to use pow(16,i) which leads
 			 * to computations in FPU and linking with libm
 			 */
+			// notes to self
+			// 1 << 4 = 16
+			// 1 << 4*needed_pow = pow(16, needed_pow)
+			// pow(8,3) = 1<<(3*3)
+			// pow(128,7) = 1<<(7*7)
 			num += data * (1 << (4 * i));
 			i++;
 		}
